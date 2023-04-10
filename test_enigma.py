@@ -19,9 +19,22 @@ def test_machine_repr(enigma):
 
 def test_encipher(enigma):
     assert enigma.encipher("TEST") == "OLPF"
+    assert enigma.encipher("AAAA") == "OWCX"
+    assert enigma.encipher("") == ""
+
 
 def test_decipher(enigma):
     assert enigma.decipher("OLPF") == "TEST"
+    assert enigma.encipher("AAAA") == "OWCX"
+    assert enigma.encipher("") == ""
+
+def test_encipher_decipher_equal(enigma):
+    cipher = enigma.encipher("BBBBBB")
+    print(cipher)
+    enigma = Enigma()
+    assert enigma.decipher(cipher) == "BBBBBB"
+    enigma = Enigma()
+    assert enigma.encipher(cipher) == "BBBBBB"
 
 def test_encode_decode_letter(enigma):
     with pytest.raises(ValueError):
